@@ -2,7 +2,8 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Loading models" href="nbox.load.html" /><link rel="prev" title="Scikit Learn Models" href="quick_skl.html" />
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Loading models" href="nbox.load.html" /><link rel="prev" title="Scikit Learn Models" href="quick_skl.html" />
 
     <meta name="generator" content="sphinx-4.2.0, furo 2021.10.09"/>
         <title>How to nboxCLI - nbox 0.2.0 documentation</title>
@@ -199,7 +200,7 @@
           </label>
         </div>
         <article role="main">
-          <div class="section" id="how-to-nboxcli">
+          <section id="how-to-nboxcli">
 <h1>How to nboxCLI<a class="headerlink" href="#how-to-nboxcli" title="Permalink to this headline">¶</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">nbox</span></code> provides a simple and effective CLI commands that you can add to your current CI/CD pipeline.</p>
 <p>As of this writing there is only one task that <code class="docutils literal notranslate"><span class="pre">nbox</span></code> CLI does, deployment of models. It directly calls the <code class="docutils literal notranslate"><span class="pre">nbox.network.one_click_deploy</span></code> method along, if needed with authentication for single line in your CI/CD. When in an automated pipeline, file <code class="docutils literal notranslate"><span class="pre">secrets.json</span></code> might not be available so set <code class="docutils literal notranslate"><span class="pre">NBX_AUTH=1</span></code> when using CLI.</p>
@@ -207,7 +208,7 @@
 </pre></div>
 </div>
 <p>We use <code class="docutils literal notranslate"><span class="pre">fire</span></code> for converting the below method to CLI so a quick go through of the method will tell you enough about the input. All you need is to convert each <code class="docutils literal notranslate"><span class="pre">kwarg</span></code> to <code class="docutils literal notranslate"><span class="pre">--kwarg</span></code> in your CLI.</p>
-<div class="section" id="module-nbox.cli">
+<section id="module-nbox.cli">
 <span id="methods"></span><h2>Methods<a class="headerlink" href="#module-nbox.cli" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="nbox.cli.deploy">
@@ -245,8 +246,8 @@ If you are using a config file then data will be loaded from there and other kwa
 </dd>
 </dl>
 </dd></dl>
-</div>
-</div>
+</section>
+</section>
 
         </article>
       </div>
