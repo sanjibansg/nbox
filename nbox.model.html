@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Parsers" href="nbox.parsers.html" /><link rel="prev" title="Loading models" href="nbox.load.html" />
 
     <meta name="generator" content="sphinx-4.2.0, furo 2021.10.09"/>
-        <title>nbox Model - nbox 0.2.0 documentation</title>
+        <title>nbox Model - nbox 0.2.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=0254c309f5cadf746f1a613e7677379ac9c8cdcd" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=16fb25fabf47304eee183a5e9af80b1ba98259b1" />
@@ -123,7 +123,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">nbox 0.2.0 documentation</div></a>
+      <a href="index.html"><div class="brand">nbox 0.2.1 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -134,7 +134,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -146,7 +146,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">nbox 0.2.0 documentation</span>
+  <span class="sidebar-brand-text">nbox 0.2.1 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -161,7 +161,7 @@
 <li class="toctree-l1"><a class="reference internal" href="quick_skl.html">Scikit Learn Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.cli.html">How to nboxCLI</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<p class="caption" role="heading"><span class="caption-text">Documentations</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="nbox.load.html">Loading models</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">nbox Model</a></li>
@@ -174,6 +174,10 @@
 <li class="toctree-l1"><a class="reference internal" href="nbox.network.html">Network Methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.utils.html">Utils</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.user.html">User</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">R&amp;D</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="in_progress.html">TODO</a></li>
 </ul>
 
 </div>
@@ -194,17 +198,77 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main">
-          <section id="module-nbox.model">
-<span id="nbox-model"></span><h1>nbox Model<a class="headerlink" href="#module-nbox.model" title="Permalink to this headline">¶</a></h1>
+          <section id="nbox-model">
+<h1>nbox Model<a class="headerlink" href="#nbox-model" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">nbox.Model</span></code> is a simple wrapper on top of your <code class="docutils literal notranslate"><span class="pre">pytorch</span></code> and <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> models that simplifies
+using the model based functionalities and products from NimbleBox.ai dead-simple to use. These include
+deploying models onto a fully autoscaling kubernetes pods, exporting models between multiple different
+formats or compiling them to high performance <a class="reference external" href="https://docs.openvinotoolkit.org/latest/">OVMS</a> containers.</p>
+<p>Some things to understand:</p>
+<p>1. <strong>deployment_type:</strong> This is the server type to be used, there are two types, a power serving <code class="docutils literal notranslate"><span class="pre">ovms2</span></code>
+(written C++) and a flexible <code class="docutils literal notranslate"><span class="pre">nbox</span></code> (written in python).</p>
+<p>2. <strong>runtime:</strong> This is the serialisation for running the model, there are three different types based on the
+serving method (<code class="docutils literal notranslate"><span class="pre">deployment_type</span></code>):</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>When using <code class="docutils literal notranslate"><span class="pre">deployment_type=='nbox'</span></code>:</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">onnx</span></code> this uses the ONNX Runtime, runs with GPUs and CPUs</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">torchscript</span></code> this is exclusively for <code class="docutils literal notranslate"><span class="pre">pytorch</span></code> models, runs with GPUs and CPUs</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>When using <code class="docutils literal notranslate"><span class="pre">deployment_type=='ovms2'</span></code>, the runtime is automatically set</p></li>
+</ul>
+<p>This table can be a handy guide in understanding what is happening.</p>
+<div class="table-wrapper"><table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 29%"/>
+<col style="width: 29%"/>
+<col style="width: 21%"/>
+<col style="width: 21%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><code class="docutils literal notranslate"><span class="pre">runtime</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">deployment_type</span></code></p></th>
+<th class="head"><p>Pytorch <code class="docutils literal notranslate"><span class="pre">pt</span></code></p></th>
+<th class="head"><p>Scikit <code class="docutils literal notranslate"><span class="pre">sk</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">onnx</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ovms2</span></code></p></td>
+<td><p>✅</p></td>
+<td><p>❌</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">onnx</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">nbox</span></code></p></td>
+<td><p>✅</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">torchscript</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">nbox</span></code></p></td>
+<td><p>✅</p></td>
+<td><p>🧩 NA</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pkl</span></code> “pickle”</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">nbox</span></code></p></td>
+<td><p>use <code class="docutils literal notranslate"><span class="pre">torchscript</span></code></p></td>
+<td><p>🚧 in progress</p></td>
+</tr>
+</tbody>
+</table></div>
+<section id="module-nbox.model">
+<span id="documentation"></span><h2>Documentation<a class="headerlink" href="#module-nbox.model" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="nbox.model.Model">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">nbox.model.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_or_model_url</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbx_api_key</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">category</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokenizer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_key</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_meta</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.model.Model" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">nbox.model.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_or_model_url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbx_api_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">category</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokenizer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_meta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.model.Model" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Model class designed for inference. Seemlessly remove boundaries between local and cloud inference
 from <code class="docutils literal notranslate"><span class="pre">nbox==0.1.10</span></code> <code class="docutils literal notranslate"><span class="pre">nbox.Model</span></code> handles both local and remote models</p>
@@ -279,6 +343,33 @@ from <code class="docutils literal notranslate"><span class="pre">nbox==0.1.10</
 <dd><p>if underlying model has train method, call it</p>
 </dd></dl>
 <dl class="py method">
+<dt class="sig sig-object py" id="nbox.model.Model.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_inputs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.model.Model.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the most important part of this codebase. The <code class="docutils literal notranslate"><span class="pre">input_object</span></code> can be anything from
+a tensor, an image file, filepath as string, string and must be processed automatically by a
+well written <code class="docutils literal notranslate"><span class="pre">nbox.parser.BaseParser</span></code> object . This <code class="docutils literal notranslate"><span class="pre">__call__</span></code> should understand the different
+usecases and manage accordingly.</p>
+<p>The current idea is that what ever the input, based on the category (image, text, audio, smell)
+it will be parsed through dedicated parsers that can make ingest anything.</p>
+<p>The entire purpose of this package is to make inference chill.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_object</strong> (<em>Any</em>) – input to be processed</p></li>
+<li><p><strong>return_inputs</strong> (<em>bool</em><em>, </em><em>optional</em>) – whether to return the inputs or not. Defaults to False.</p></li>
+<li><p><strong>method</strong> (<em>str</em><em>, </em><em>optional</em>) – specifically for sklearn models, this is the method to be called
+if nothing is provided then we call <code class="docutils literal notranslate"><span class="pre">.predict()</span></code> method.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>currently this is output from the model, so if it is tensors and return dicts.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
 <dt class="sig sig-object py" id="nbox.model.Model.get_nbox_meta">
 <span class="sig-name descname"><span class="pre">get_nbox_meta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_object</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.model.Model.get_nbox_meta" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the nbox meta and trace args for the model with the given input object</p>
@@ -290,7 +381,7 @@ from <code class="docutils literal notranslate"><span class="pre">nbox==0.1.10</
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="nbox.model.Model.export">
-<span class="sig-name descname"><span class="pre">export</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_object</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">export_type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'onnx'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_convert_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.model.Model.export" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">export</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">export_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'onnx'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_convert_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.model.Model.export" title="Permalink to this definition">¶</a></dt>
 <dd><p>Export the model to a particular kind of DAG (ie. like onnx, torchscript, etc.)</p>
 <p>Raises appropriate assertion errors for strict checking of inputs</p>
 <dl class="field-list simple">
@@ -321,8 +412,8 @@ from <code class="docutils literal notranslate"><span class="pre">nbox==0.1.10</
 </dd></dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="nbox.model.Model.deploy">
-<span class="sig-name descname"><span class="pre">deploy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_object</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache_dir</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait_for_deployment</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">runtime</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'onnx'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deployment_type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'ovms2'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.model.Model.deploy" title="Permalink to this definition">¶</a></dt>
-<dd><p>NBX-Deploy (read more one: <a class="reference external" href="https://docs.nimblebox.ai/nbox/nbox-intro/quickstart-with-deployment">https://docs.nimblebox.ai/nbox/nbox-intro/quickstart-with-deployment</a>)</p>
+<span class="sig-name descname"><span class="pre">deploy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait_for_deployment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">runtime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'onnx'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deployment_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'nbox'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.model.Model.deploy" title="Permalink to this definition">¶</a></dt>
+<dd><p>NBX-Deploy <a class="reference external" href="https://nimbleboxai.github.io/nbox/nbox.model.html">read more</a></p>
 <p>This deploys the current model onto our managed K8s clusters. This tight product service integration
 is very crucial for us and is the best way to make deploy a model for usage.</p>
 <p>Raises appropriate assertion errors for strict checking of inputs</p>
@@ -333,13 +424,14 @@ is very crucial for us and is the best way to make deploy a model for usage.</p>
 <li><p><strong>model_name</strong> (<em>str</em><em>, </em><em>optional</em>) – custom model name for this model</p></li>
 <li><p><strong>cache_dir</strong> (<em>str</em><em>, </em><em>optional</em>) – custom caching directory</p></li>
 <li><p><strong>wait_for_deployment</strong> (<em>bool</em><em>, </em><em>optional</em>) – wait for deployment to complete</p></li>
-<li><p><strong>runtime</strong> (<em>str</em><em>, </em><em>optional</em>) – runtime to use for deployment</p></li>
-<li><p><strong>deployment_type</strong> (<em>str</em><em>, </em><em>optional</em>) – deployment type</p></li>
+<li><p><strong>runtime</strong> (<em>str</em><em>, </em><em>optional</em>) – runtime to use for deployment should be one of <code class="docutils literal notranslate"><span class="pre">["onnx",</span> <span class="pre">"torchscript"]</span></code>, default is <code class="docutils literal notranslate"><span class="pre">onnx</span></code></p></li>
+<li><p><strong>deployment_type</strong> (<em>str</em><em>, </em><em>optional</em>) – deployment type should be one of <code class="docutils literal notranslate"><span class="pre">['ovms2',</span> <span class="pre">'nbox']</span></code>, default is <code class="docutils literal notranslate"><span class="pre">nbox</span></code></p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 </dd></dl>
+</section>
 </section>
 
         </article>
@@ -383,8 +475,27 @@ is very crucial for us and is the best way to make deploy a model for usage.</p>
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">nbox Model</a><ul>
+<li><a class="reference internal" href="#module-nbox.model">Documentation</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>

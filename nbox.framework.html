@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="pytorch specific methods" href="nbox.framework.pytorch.html" /><link rel="prev" title="Parsers" href="nbox.parsers.html" />
 
     <meta name="generator" content="sphinx-4.2.0, furo 2021.10.09"/>
-        <title>Frameworks - nbox 0.2.0 documentation</title>
+        <title>Frameworks - nbox 0.2.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=0254c309f5cadf746f1a613e7677379ac9c8cdcd" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=16fb25fabf47304eee183a5e9af80b1ba98259b1" />
@@ -123,7 +123,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">nbox 0.2.0 documentation</div></a>
+      <a href="index.html"><div class="brand">nbox 0.2.1 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -146,7 +146,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">nbox 0.2.0 documentation</span>
+  <span class="sidebar-brand-text">nbox 0.2.1 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -161,7 +161,7 @@
 <li class="toctree-l1"><a class="reference internal" href="quick_skl.html">Scikit Learn Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.cli.html">How to nboxCLI</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<p class="caption" role="heading"><span class="caption-text">Documentations</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="nbox.load.html">Loading models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.model.html">nbox Model</a></li>
@@ -174,6 +174,10 @@
 <li class="toctree-l1"><a class="reference internal" href="nbox.network.html">Network Methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.utils.html">Utils</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.user.html">User</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">R&amp;D</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="in_progress.html">TODO</a></li>
 </ul>
 
 </div>
@@ -203,10 +207,23 @@
           <section id="frameworks">
 <h1>Frameworks<a class="headerlink" href="#frameworks" title="Permalink to this headline">¶</a></h1>
 <p>This section deals exclusively with conversion operations across different frameworks.</p>
-<span class="target" id="module-nbox.framework"></span><dl class="py function">
+<span class="target" id="module-nbox.framework"></span><p>This submodule concerns itself with conversion of different framworks to other frameworks.
+It achieves this by providing a fix set of functions for each framework. There are a couple of
+caveats that the developer must know about.</p>
+<p>1. We use joblib to serialize the model, see <a class="reference external" href="https://stackoverflow.com/questions/12615525/what-are-the-different-use-cases-of-joblib-versus-pickle">reason</a> so when you will try to unpickle the model <code class="docutils literal notranslate"><span class="pre">pickle</span></code> will not work correctly and will throw the error
+<code class="docutils literal notranslate"><span class="pre">_pickle.UnpicklingError:</span> <span class="pre">invalid</span> <span class="pre">load</span> <span class="pre">key,</span> <span class="pre">'\x00'</span></code>. So ensure that you use <code class="docutils literal notranslate"><span class="pre">joblib</span></code>.</p>
+<p>2. Serializing torch models directly is a bit tricky and weird, you can read more about it
+<a class="reference external" href="https://github.com/pytorch/pytorch/blob/master/torch/csrc/jit/docs/serialization.md">here</a>,
+so technically pytorch torch.save() automatically pickles the object along with the required
+datapoint (model hierarchy, constants, data, etc.)</p>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
 <dt class="sig sig-object py" id="nbox.framework.get_meta">
 <span class="sig-prename descclassname"><span class="pre">nbox.framework.</span></span><span class="sig-name descname"><span class="pre">get_meta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_shapes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_shapes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.framework.get_meta" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Generic method to convert the inputs to get <code class="docutils literal notranslate"><span class="pre">nbox_meta['metadata']</span></code> dictionary</p>
+</dd></dl>
+</section>
 <section id="supporting-methods">
 <h2>Supporting methods<a class="headerlink" href="#supporting-methods" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
@@ -272,6 +289,7 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Frameworks</a><ul>
+<li><a class="reference internal" href="#documentation">Documentation</a></li>
 <li><a class="reference internal" href="#supporting-methods">Supporting methods</a></li>
 </ul>
 </li>

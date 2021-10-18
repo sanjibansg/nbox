@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Frameworks" href="nbox.framework.html" /><link rel="prev" title="nbox Model" href="nbox.model.html" />
 
     <meta name="generator" content="sphinx-4.2.0, furo 2021.10.09"/>
-        <title>Parsers - nbox 0.2.0 documentation</title>
+        <title>Parsers - nbox 0.2.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=0254c309f5cadf746f1a613e7677379ac9c8cdcd" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=16fb25fabf47304eee183a5e9af80b1ba98259b1" />
@@ -123,7 +123,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">nbox 0.2.0 documentation</div></a>
+      <a href="index.html"><div class="brand">nbox 0.2.1 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -134,7 +134,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -146,7 +146,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">nbox 0.2.0 documentation</span>
+  <span class="sidebar-brand-text">nbox 0.2.1 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -161,7 +161,7 @@
 <li class="toctree-l1"><a class="reference internal" href="quick_skl.html">Scikit Learn Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.cli.html">How to nboxCLI</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<p class="caption" role="heading"><span class="caption-text">Documentations</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="nbox.load.html">Loading models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.model.html">nbox Model</a></li>
@@ -174,6 +174,10 @@
 <li class="toctree-l1"><a class="reference internal" href="nbox.network.html">Network Methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.utils.html">Utils</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.user.html">User</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">R&amp;D</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="in_progress.html">TODO</a></li>
 </ul>
 
 </div>
@@ -194,14 +198,19 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main">
-          <section id="module-nbox.parsers">
-<span id="parsers"></span><h1>Parsers<a class="headerlink" href="#module-nbox.parsers" title="Permalink to this headline">¶</a></h1>
+          <section id="parsers">
+<h1>Parsers<a class="headerlink" href="#parsers" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">Parser</span></code> objects take the input to the model and convert it to numbers that the model can
+consume. We have provided a base class <code class="docutils literal notranslate"><span class="pre">BaseParser</span></code> on top of which you can build your own
+parser. We have also provided a few basic parsers such as <code class="docutils literal notranslate"><span class="pre">ImageParser</span></code> and <code class="docutils literal notranslate"><span class="pre">TextParser</span></code>.</p>
+<section id="module-nbox.parsers">
+<span id="documentation"></span><h2>Documentation<a class="headerlink" href="#module-nbox.parsers" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="nbox.parsers.BaseParser">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">nbox.parsers.</span></span><span class="sig-name descname"><span class="pre">BaseParser</span></span><a class="headerlink" href="#nbox.parsers.BaseParser" title="Permalink to this definition">¶</a></dt>
@@ -235,8 +244,17 @@ the three kind of structures:</p>
 <dt class="sig sig-object py" id="nbox.parsers.ImageParser">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">nbox.parsers.</span></span><span class="sig-name descname"><span class="pre">ImageParser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">post_proc_fn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cloud_infer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.parsers.ImageParser" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#nbox.parsers.BaseParser" title="nbox.parsers.BaseParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">nbox.parsers.BaseParser</span></code></a></p>
-<p>single unified Image parser that consumes different types of data
-and returns a processed numpy array</p>
+<p>single unified Image parser that consumes different types of data and returns a processed numpy array</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>post_proc_fn</strong> (<em>callable</em><em>, </em><em>optional</em>) – post processing function, this takes in the torch tensor and performs
+operation</p></li>
+<li><p><strong>cloud_infer</strong> (<em>bool</em><em>, </em><em>optional</em>) – whether the input is from cloud inference</p></li>
+<li><p><strong>kwargs</strong> (<em>dict</em><em>, </em><em>optional</em>) – keyword arguments to store here</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="nbox.parsers.ImageParser.rescale">
 <span class="sig-name descname"><span class="pre">rescale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.parsers.ImageParser.rescale" title="Permalink to this definition">¶</a></dt>
@@ -265,9 +283,17 @@ can be a list or a p-list, so we first check if input is not a string, Image or 
 </dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="nbox.parsers.TextParser">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">nbox.parsers.</span></span><span class="sig-name descname"><span class="pre">TextParser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tokenizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_len</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_proc_fn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.parsers.TextParser" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">nbox.parsers.</span></span><span class="sig-name descname"><span class="pre">TextParser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tokenizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_len</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.parsers.TextParser" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#nbox.parsers.BaseParser" title="nbox.parsers.BaseParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">nbox.parsers.BaseParser</span></code></a></p>
 <p>Unified Text parsing engine, returns tokenized dictionaries</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tokenizer</strong> (<em>Tokenizer</em>) – tokenizer object for the text</p></li>
+<li><p><strong>max_len</strong> (<em>int</em>) – maximum length of the text</p></li>
+</ul>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="nbox.parsers.TextParser.process_primitive">
 <span class="sig-name descname"><span class="pre">process_primitive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.parsers.TextParser.process_primitive" title="Permalink to this definition">¶</a></dt>
@@ -283,6 +309,7 @@ can be a list or a p-list, so we first check if input is not a string, Image or 
 <dd><p>takes in and tokenises the strings</p>
 </dd></dl>
 </dd></dl>
+</section>
 </section>
 
         </article>
@@ -326,8 +353,27 @@ can be a list or a p-list, so we first check if input is not a string, Image or 
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Parsers</a><ul>
+<li><a class="reference internal" href="#module-nbox.parsers">Documentation</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>

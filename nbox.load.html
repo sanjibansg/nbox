@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="nbox Model" href="nbox.model.html" /><link rel="prev" title="How to nboxCLI" href="nbox.cli.html" />
 
     <meta name="generator" content="sphinx-4.2.0, furo 2021.10.09"/>
-        <title>Loading models - nbox 0.2.0 documentation</title>
+        <title>Loading models - nbox 0.2.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=0254c309f5cadf746f1a613e7677379ac9c8cdcd" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=16fb25fabf47304eee183a5e9af80b1ba98259b1" />
@@ -123,7 +123,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">nbox 0.2.0 documentation</div></a>
+      <a href="index.html"><div class="brand">nbox 0.2.1 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -146,7 +146,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">nbox 0.2.0 documentation</span>
+  <span class="sidebar-brand-text">nbox 0.2.1 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -161,7 +161,7 @@
 <li class="toctree-l1"><a class="reference internal" href="quick_skl.html">Scikit Learn Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.cli.html">How to nboxCLI</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<p class="caption" role="heading"><span class="caption-text">Documentations</span></p>
 <ul class="current">
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Loading models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.model.html">nbox Model</a></li>
@@ -174,6 +174,10 @@
 <li class="toctree-l1"><a class="reference internal" href="nbox.network.html">Network Methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.utils.html">Utils</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.user.html">User</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">R&amp;D</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="in_progress.html">TODO</a></li>
 </ul>
 
 </div>
@@ -239,7 +243,7 @@ simplicity of nbox.loaders</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="nbox.load.load">
-<span class="sig-prename descclassname"><span class="pre">nbox.load.</span></span><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_key_or_url</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbx_api_key</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">loader_kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.load.load" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">nbox.load.</span></span><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_key_or_url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbx_api_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">loader_kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.load.load" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function loads the nbox.Model object from the pretrained models index or NimbleBox.ai’s cloud infer
 service.</p>
 <dl class="field-list simple">
