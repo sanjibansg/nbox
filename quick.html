@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="User" href="nbox.user.html" /><link rel="prev" title="Network Methods" href="nbox.network.html" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="QuickStart with Deployment" href="quick_deploy.html" /><link rel="prev" title="Welcome to nbox’s documentation!" href="index.html" />
 
     <meta name="generator" content="sphinx-4.2.0, furo 2021.10.09"/>
-        <title>Utils - nbox 0.2.3 documentation</title>
+        <title>Quickstart - nbox 0.2.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=0254c309f5cadf746f1a613e7677379ac9c8cdcd" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=16fb25fabf47304eee183a5e9af80b1ba98259b1" />
@@ -155,15 +155,15 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="quick.html">Quickstart</a></li>
+<ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quick_deploy.html">QuickStart with Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quick_plug.html">How to plug your own models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quick_skl.html">Scikit Learn Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.cli.html">How to nboxCLI</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Documentations</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="nbox.load.html">Loading models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.model.html">nbox Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.parsers.html">Parsers</a></li>
@@ -173,7 +173,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.network.html">Network Methods</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nbox.utils.html">Utils</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nbox.user.html">User</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">R&amp;D</span></p>
@@ -205,69 +205,17 @@
           </label>
         </div>
         <article role="main">
-          <section id="module-nbox.utils">
-<span id="utils"></span><h1>Utils<a class="headerlink" href="#module-nbox.utils" title="Permalink to this headline">¶</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="nbox.utils.info">
-<span class="sig-prename descclassname"><span class="pre">nbox.utils.</span></span><span class="sig-name descname"><span class="pre">info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.utils.info" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-<dl class="py function">
-<dt class="sig sig-object py" id="nbox.utils.fetch">
-<span class="sig-prename descclassname"><span class="pre">nbox.utils.</span></span><span class="sig-name descname"><span class="pre">fetch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.utils.fetch" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-<dl class="py function">
-<dt class="sig sig-object py" id="nbox.utils.get_image">
-<span class="sig-prename descclassname"><span class="pre">nbox.utils.</span></span><span class="sig-name descname"><span class="pre">get_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path_or_url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.utils.get_image" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-<dl class="py function">
-<dt class="sig sig-object py" id="nbox.utils.folder">
-<span class="sig-prename descclassname"><span class="pre">nbox.utils.</span></span><span class="sig-name descname"><span class="pre">folder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.utils.folder" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-<dl class="py function">
-<dt class="sig sig-object py" id="nbox.utils.join">
-<span class="sig-prename descclassname"><span class="pre">nbox.utils.</span></span><span class="sig-name descname"><span class="pre">join</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.utils.join" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-<dl class="py function">
-<dt class="sig sig-object py" id="nbox.utils.isthere">
-<span class="sig-prename descclassname"><span class="pre">nbox.utils.</span></span><span class="sig-name descname"><span class="pre">isthere</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">package</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.utils.isthere" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-<dl class="py function">
-<dt class="sig sig-object py" id="nbox.utils.get_random_name">
-<span class="sig-prename descclassname"><span class="pre">nbox.utils.</span></span><span class="sig-name descname"><span class="pre">get_random_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#nbox.utils.get_random_name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-<dl class="py function">
-<dt class="sig sig-object py" id="nbox.utils.hash_">
-<span class="sig-prename descclassname"><span class="pre">nbox.utils.</span></span><span class="sig-name descname"><span class="pre">hash_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'md5'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.utils.hash_" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-<dl class="py function">
-<dt class="sig sig-object py" id="nbox.utils.convert_to_list">
-<span class="sig-prename descclassname"><span class="pre">nbox.utils.</span></span><span class="sig-name descname"><span class="pre">convert_to_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.utils.convert_to_list" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-<dl class="py class">
-<dt class="sig sig-object py" id="nbox.utils.Console">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">nbox.utils.</span></span><span class="sig-name descname"><span class="pre">Console</span></span><a class="headerlink" href="#nbox.utils.Console" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="nbox.utils.Console.T">
-<span class="sig-name descname"><span class="pre">T</span></span><em class="property"> <span class="pre">=</span> <span class="pre">namespace(clk='deep_sky_blue1',</span> <span class="pre">fail='bold</span> <span class="pre">red',</span> <span class="pre">inp='bold</span> <span class="pre">yellow',</span> <span class="pre">nbx='bold</span> <span class="pre">bright_black',</span> <span class="pre">rule='dark_cyan',</span> <span class="pre">spinner='weather',</span> <span class="pre">st='bold</span> <span class="pre">dark_cyan')</span></em><a class="headerlink" href="#nbox.utils.Console.T" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="nbox.utils.Console.rule">
-<span class="sig-name descname"><span class="pre">rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.utils.Console.rule" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="nbox.utils.Console.sleep">
-<span class="sig-name descname"><span class="pre">sleep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.utils.Console.sleep" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="nbox.utils.Console.start">
-<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.utils.Console.start" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="nbox.utils.Console.stop">
-<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.utils.Console.stop" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-</dd></dl>
+          <section id="quickstart">
+<h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
+<p>Good quick help never hurts.</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="quick_deploy.html">Deployment Tutorial</a></p></li>
+<li><p><a class="reference external" href="quick_plug.html">Plug Tutorial</a></p></li>
+<li><p><a class="reference external" href="quick_skl.html">Scikit Learn Models</a></p></li>
+<li><p><a class="reference external" href="nbox.cli.html">Using CLI</a></p></li>
+<li><p>Scheduling deployment with Airflow (WIP)</p></li>
+<li><p>Scheduling training with Airflow (WIP)</p></li>
+</ol>
 </section>
 
         </article>
@@ -275,23 +223,23 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="nbox.user.html">
+          <a class="next-page" href="quick_deploy.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">User</div>
+                <div class="title">QuickStart with Deployment</div>
               </div>
               <svg><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="nbox.network.html">
+          <a class="prev-page" href="index.html">
               <svg><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Network Methods</div>
+                <div class="title">Home</div>
                 
               </div>
             </a>
@@ -303,7 +251,7 @@
               and
               <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
               <a href="https://github.com/pradyunsg/furo">Furo theme</a>. |
-            <a class="muted-link" href="_sources/nbox.utils.rst.txt"
+            <a class="muted-link" href="_sources/quick.rst.txt"
                rel="nofollow">
               Show Source
             </a>

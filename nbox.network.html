@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Utils" href="nbox.utils.html" /><link rel="prev" title="sklearn specific methods" href="nbox.framework.sklearn.html" />
 
     <meta name="generator" content="sphinx-4.2.0, furo 2021.10.09"/>
-        <title>Network Methods - nbox 0.2.1 documentation</title>
+        <title>Network Methods - nbox 0.2.3 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=0254c309f5cadf746f1a613e7677379ac9c8cdcd" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=16fb25fabf47304eee183a5e9af80b1ba98259b1" />
@@ -123,7 +123,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">nbox 0.2.1 documentation</div></a>
+      <a href="index.html"><div class="brand">nbox 0.2.3 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -146,7 +146,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">nbox 0.2.1 documentation</span>
+  <span class="sidebar-brand-text">nbox 0.2.3 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -156,6 +156,7 @@
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="quick.html">Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quick_deploy.html">QuickStart with Deployment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quick_plug.html">How to plug your own models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quick_skl.html">Scikit Learn Models</a></li>
@@ -213,17 +214,16 @@
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="nbox.network.one_click_deploy">
-<span class="sig-prename descclassname"><span class="pre">nbox.network.</span></span><span class="sig-name descname"><span class="pre">one_click_deploy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">export_model_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deployment_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ovms2'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbox_meta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait_for_deployment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.network.one_click_deploy" title="Permalink to this definition">¶</a></dt>
-<dd><p>One-Click-Deploy (OCD) method v0 that takes in the torch model, converts to ONNX
-and then deploys on NBX Platform. Avoid using this function manually and use
-<cite>model.deploy()</cite> instead</p>
+<span class="sig-prename descclassname"><span class="pre">nbox.network.</span></span><span class="sig-name descname"><span class="pre">one_click_deploy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">export_model_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deployment_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ovms2'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbox_meta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait_for_deployment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nbox.network.one_click_deploy" title="Permalink to this definition">¶</a></dt>
+<dd><p>One-Click-Deploy method v1 that takes in the torch model, converts to ONNX and then deploys on NBX Platform.</p>
+<p>Avoid using this function manually and use <cite>model.deploy()</cite> instead</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>export_model_path</strong> (<em>str</em>) – path to the file to upload</p></li>
+<li><p><strong>model_name</strong> (<em>str</em>) – name of the model to be dislpayed on NBX Platform</p></li>
 <li><p><strong>deployment_type</strong> (<em>str</em><em>, </em><em>optional</em>) – type of deployment strategy</p></li>
 <li><p><strong>nbox_meta</strong> (<em>dict</em><em>, </em><em>optional</em>) – metadata for the nbox.Model() object being deployed</p></li>
-<li><p><strong>model_name</strong> (<em>str</em><em>, </em><em>optional</em>) – name of the model being deployed</p></li>
 <li><p><strong>wait_for_deployment</strong> (<em>bool</em><em>, </em><em>optional</em>) – if true, acts like a blocking call (sync vs async)</p></li>
 <li><p><strong>convert_args</strong> (<em>str</em><em>, </em><em>optional</em>) – if deployment type == “ovms2” can pass extra arguments to MO</p></li>
 </ul>
