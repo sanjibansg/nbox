@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"os"
@@ -12,11 +13,6 @@ import (
 
 //
 var watcher *fsnotify.Watcher
-
-// album represents data about a record album.
-type echo struct {
-	data string `json:"data"`
-}
 
 // main
 func main() {
@@ -58,19 +54,10 @@ func main() {
 			select {
 			// watch for events
 			case event := <-watcher.Event:
-				fmt.Printf("EVENT! %#v\n", event)
-				// echo struct as data with string "hello"
-				resp, err := http.Post(
-					"http://0.0.0.0:6942",
-					"application/json",
-					bytes.NewBuffer([]byte(`{"data":"hello"}`)),
-				)
-
-				if err != nil {
-					fmt.Println(err)
-				}
-
-				fmt.Println(resp)
+				fmt.Printf("> %#v\n", event.Name)
+				values := map[string]string{"data": fmt.Sprintf("%#v", event.Name)}
+				m, _ := json.Marshal(values)
+				http.Post("http://0.0.0.0:6942", "application/json", bytes.NewBuffer(m))
 
 			// watch for errors
 			case err := <-watcher.Error:

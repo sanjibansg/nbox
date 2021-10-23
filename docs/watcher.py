@@ -16,8 +16,10 @@ de_bounce = time()
 
 @app.post("/")
 async def echo(echo: Echo):
+  print(echo)
+  print("Updated file:", echo.data)
   global de_bounce
-  if time() - de_bounce > 2:
+  if time() - de_bounce > 5:
     de_bounce = time()
     subprocess.run(["make", "html"])
   return echo
